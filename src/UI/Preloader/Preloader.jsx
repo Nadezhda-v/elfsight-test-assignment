@@ -1,4 +1,4 @@
-import RingLoader from 'react-spinners/MoonLoader';
+import RingLoader from 'react-spinners/RingLoader';
 import PropTypes from 'prop-types';
 
 export const Preloader = ({ color, size }) =>

@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledGender = styled.span`
-  padding-top: 10px;
-`;
+import { StyledSpanPrimary } from '../../../../../styles/base/text';
 
 export const Gender = ({ gender }) => (
-  <StyledGender>Gender: {gender}</StyledGender>
+  <StyledSpanPrimary>Gender: {gender}</StyledSpanPrimary>
 );
 
 Gender.propTypes = {

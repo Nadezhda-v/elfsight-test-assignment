@@ -3,14 +3,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { URL_API } from '../../api/constants';
 
-export const cardsRequestAsync = createAsyncThunk(
-  'cards/axios',
-  () =>
-    axios.get(`${URL_API}/character`)
+export const cardRequestAsync = createAsyncThunk(
+  'card/axios',
+  (id) =>
+    axios.get(`${URL_API}/character/${id}`)
       .then(({ data }) => {
-        const cards = data.results;
+        const card = data;
 
-        return cards;
+        return card;
       })
       .catch((error) => ({ error: error.message }))
 );
