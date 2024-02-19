@@ -23,6 +23,7 @@ export const Content = ({ data }) => {
     gender,
     location: { name: location, url: urlLocation },
     origin: { name: origin, url: urlOrigin },
+    type,
   } = data;
 
   return (
@@ -33,6 +34,13 @@ export const Content = ({ data }) => {
           <StyledSpanSecondary>{status}-{species}</StyledSpanSecondary>
           <StyledSpanSecondary>Gender: {gender}</StyledSpanSecondary>
         </StyledSection>
+
+        {type && (
+          <StyledSection padding={'10px'}>
+            <StyledSpanSecondary>Type:</StyledSpanSecondary>
+            <StyledSpanSecondary color='#e36912'>{type}</StyledSpanSecondary>
+          </StyledSection>
+        )}
 
         {location && urlLocation && (
           <StyledSection padding={'10px'}>

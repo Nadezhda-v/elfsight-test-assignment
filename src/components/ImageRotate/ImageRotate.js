@@ -32,13 +32,14 @@ export const ImageRotate = ({ image, title }) => {
   };
 
   return (
-    <StyledImageWrapper>
+    <StyledImageWrapper
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <StyledImage
         src={image}
         alt={title}
         style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
       />
     </StyledImageWrapper>
   );

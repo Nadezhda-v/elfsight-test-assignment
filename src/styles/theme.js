@@ -4,6 +4,10 @@ export const theme = {
     secondary: '#000',
     title: '#fff',
     link: '#e36912',
+    filter: '#e36912',
+    bgForm: '#f1f1f152',
+    submitButton: '#e36912',
+    resetButton: 'rgb(158, 158, 158)',
     preloader: 'rgb(158, 158, 158)',
   },
   media: {

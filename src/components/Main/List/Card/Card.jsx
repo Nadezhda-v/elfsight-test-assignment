@@ -6,6 +6,7 @@ import { Title } from './Title/Title';
 import { Status } from './Status/Status';
 import { Gender } from './Gender/Gender';
 import { StyledCard, StyledContent } from '../../../../styles/blocks/card';
+import { Type } from './Type/Type';
 
 export const Card = ({ cardData }) => {
   const {
@@ -15,6 +16,7 @@ export const Card = ({ cardData }) => {
     status,
     species,
     gender,
+    type,
   } = cardData;
 
   const navigate = useNavigate();
@@ -30,7 +32,8 @@ export const Card = ({ cardData }) => {
       <StyledContent>
         <Title title={title} />
         <Status status={status} species={species} />
-        <Gender gender={gender}/>
+        <Gender gender={gender} />
+        {type && <Type type={type} />}
       </StyledContent>
     </StyledCard>
   );

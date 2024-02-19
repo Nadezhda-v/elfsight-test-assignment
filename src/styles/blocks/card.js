@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledCard = styled.li`
   position: relative;
-  flex: 0 1 580px;
+  flex: 1 1 580px;
   display: grid;
   grid-template-columns: 200px 1fr;
   min-height: 200px;
