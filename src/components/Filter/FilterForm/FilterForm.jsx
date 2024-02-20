@@ -1,20 +1,27 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { isEqual } from 'lodash';
 
 import {
   StyledButtonWrapper,
   StyledFilterForm,
   StyledFormWrapper,
   StyledInput,
-  StyledSelect
+  StyledInputWrapper,
+  StyledSelect,
+  StyledSelectWrapper,
 } from '../../../styles/blocks/filterForm';
 
 import {
   StyledResetButton,
   StyledSubmitButton
 } from '../../../styles/base/button';
+import { filterRequestAsync } from '../../../store/cards/cardsAction';
 
 export const FilterForm = ({ setShowFilters }) => {
+  const dispatch = useDispatch();
+  const [previousData, setPreviousData] = useState(null);
   const [filters, setFilters] = useState({
     name: '',
     status: '',
@@ -39,10 +46,10 @@ export const FilterForm = ({ setShowFilters }) => {
       type: '',
       gender: ''
     });
-    setShowFilters(false);
+    // setShowFilters(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
     if (!Object.values(filters).some(value => value.trim() !== '')) return;
@@ -54,63 +61,69 @@ export const FilterForm = ({ setShowFilters }) => {
       data[key] = value;
     }
 
-    console.log('formData: ', data);
-    handleResetFilters();
-  };
+    // Сравнение текущих данных с предыдущими данными
+    if (isEqual(data, previousData)) {
+      return;
+    }
+
+    dispatch(filterRequestAsync(data));
+    setPreviousData(data);
+  }, [filters, previousData]);
 
   return (
     <>
       <StyledFilterForm onSubmit={handleSubmit}>
         <StyledFormWrapper>
-          <StyledInput
-            type='text'
-            name='name'
-            value={filters.name}
-            onChange={handleChange}
-            placeholder='Name'
-          />
+          <StyledInputWrapper>
+            <StyledInput
+              type='text'
+              name='name'
+              onChange={handleChange}
+              placeholder='Name'
+              maxLength={40}
+            />
 
-          <StyledInput
-            type='text'
-            name='type'
-            value={filters.type}
-            onChange={handleChange}
-            placeholder='Type'
-          />
+            <StyledInput
+              type='text'
+              name='type'
+              onChange={handleChange}
+              placeholder='Type'
+              maxLength={40}
+            />
+          </StyledInputWrapper>
 
-          <StyledSelect
-            name='status'
-            value={filters.status}
-            onChange={handleChange}
-          >
-            <option value=''>Status</option>
-            <option value='alive'>Alive</option>
-            <option value='dead'>Dead</option>
-            <option value='unknown'>Unknown</option>
-          </StyledSelect>
+          <StyledSelectWrapper>
+            <StyledSelect
+              name='status'
+              onChange={handleChange}
+            >
+              <option value=''>Status</option>
+              <option value='alive'>Alive</option>
+              <option value='dead'>Dead</option>
+              <option value='unknown'>Unknown</option>
+            </StyledSelect>
 
-          <StyledSelect
-            name='species'
-            value={filters.species}
-            onChange={handleChange}
-          >
-            <option value=''>Species</option>
-            <option value='human'>Human</option>
-            <option value='alien'>Alien</option>
-            <option value='humanoid'>Humanoid</option>
-          </StyledSelect>
+            <StyledSelect
+              name='species'
+              onChange={handleChange}
+            >
+              <option value=''>Species</option>
+              <option value='human'>Human</option>
+              <option value='alien'>Alien</option>
+              <option value='humanoid'>Humanoid</option>
+            </StyledSelect>
 
-          <StyledSelect
-            name='gender'
-            value={filters.gender}
-            onChange={handleChange}
-          >
-            <option value=''>Gender</option>
-            <option value='female'>Female</option>
-            <option value='male'>Male</option>
-            <option value='genderless'>Genderless</option>
-            <option value='unknown'>Unknown</option>
-          </StyledSelect>
+            <StyledSelect
+              name='gender'
+              onChange={handleChange}
+            >
+              <option value=''>Gender</option>
+              <option value='female'>Female</option>
+              <option value='male'>Male</option>
+              <option value='genderless'>Genderless</option>
+              <option value='unknown'>Unknown</option>
+            </StyledSelect>
+          </StyledSelectWrapper>
         </StyledFormWrapper>
 
         <StyledButtonWrapper gap={'20px'}>

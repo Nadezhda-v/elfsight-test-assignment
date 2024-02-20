@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { cardsRequestAsync } from './cardsAction';
+import { cardsRequestAsync, filterRequestAsync } from './cardsAction';
 
 const initialState = {
   loading: false,
@@ -24,7 +24,21 @@ export const cardsSlice = createSlice({
       })
       .addCase(cardsRequestAsync.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error;
+        state.error = action.payload.error;
+      })
+
+      .addCase(filterRequestAsync.pending, (state) => {
+        state.loading = true;
+        state.error = '';
+      })
+      .addCase(filterRequestAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cards = action.payload;
+        state.error = '';
+      })
+      .addCase(filterRequestAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.error;
       });
   }
 });

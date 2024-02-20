@@ -1,17 +1,50 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledFilterForm = styled.form`
   padding: 20px 20px 0;
   border: 1px solid gray;
   border-radius: 5px;
   background-color: ${props => props.bg || props.theme.colors.bgForm};
-  flex-direction: column;
+`;
+
+const StyledWrapper = css`
+  display: flex;
+  gap: 20px;
 `;
 
 export const StyledFormWrapper = styled.div`
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
+  ${StyledWrapper}
+
+  @media ${props => props.theme.media.desktop} {
+    flex-direction: column;;
+  }
+
+  @media ${props => props.theme.media.phone} {
+    gap: 14px;
+  }
+`;
+
+export const StyledSelectWrapper = styled.div`
+  ${StyledWrapper}
+
+  @media ${props => props.theme.media.phone} {
+    flex-direction: column;
+    gap: 14px;
+  }
+`;
+
+export const StyledInputWrapper = styled.div`
+  ${StyledWrapper}
+
+  @media ${props => props.theme.media.tablet} {
+    flex-direction: column;
+  }
+
+  @media ${props => props.theme.media.phone} {
+    flex-direction: column;
+    width: 100%;
+    gap: 14px;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -19,13 +52,26 @@ export const StyledInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 330px;
+
+  @media ${props => props.theme.media.phone} {
+    width: 100%;
+    padding: 6px 8px;
+  }
 `;
 
 export const StyledSelect = styled.select`
   ${StyledInput}
   background-color: #fff;
-  width: 150px;
+  width: 180px;
   border: 1px solid #ccc;
+  padding: 10px 5px;
+  max-height: 40px;
+
+  @media ${props => props.theme.media.phone} {
+    max-height: 35px;
+    padding: 6px 5px;
+    width: 100%;
+  }
 `;
 
 export const StyledButtonWrapper = styled.div`
@@ -33,4 +79,8 @@ export const StyledButtonWrapper = styled.div`
   justify-content: flex-end;
   padding: 20px 0;
   gap: ${({ gap }) => gap || '0'};
+
+  @media ${props => props.theme.media.phone} {
+    gap: 15px;
+  }
 `;

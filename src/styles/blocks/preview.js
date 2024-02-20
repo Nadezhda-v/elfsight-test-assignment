@@ -7,4 +7,8 @@ export const StyledPreview = styled.img`
   height: 100%;
   object-fit: cover;
   width: 100%;
+
+  @media ${props => props.theme.media.phone} {
+    border-radius: 5px 0 0 5px;
+  }
 `;
