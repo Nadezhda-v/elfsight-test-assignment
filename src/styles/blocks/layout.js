@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledLayout = styled.div`
   max-width: 1420px;
   padding: 40px 30px 0;
-  margin: 0 auto;
+  margin: 0 auto 30px;
 
   @media ${props => props.theme.media.tablet} {
     padding: 20px 30px 0;

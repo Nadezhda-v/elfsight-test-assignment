@@ -4,6 +4,9 @@ import { cardsRequestAsync, filterRequestAsync } from './cardsAction';
 const initialState = {
   loading: false,
   cards: [],
+  pages: 0,
+  next: '',
+  prev: '',
   error: '',
 };
 
@@ -19,8 +22,11 @@ export const cardsSlice = createSlice({
       })
       .addCase(cardsRequestAsync.fulfilled, (state, action) => {
         state.loading = false;
-        state.cards = action.payload;
-        state.error = '';
+        state.cards = action.payload.cards;
+        state.pages = action.payload.pages;
+        state.next = action.payload.next;
+        state.prev = action.payload.prev;
+        state.error = action.payload.error;
       })
       .addCase(cardsRequestAsync.rejected, (state, action) => {
         state.loading = false;
@@ -33,8 +39,11 @@ export const cardsSlice = createSlice({
       })
       .addCase(filterRequestAsync.fulfilled, (state, action) => {
         state.loading = false;
-        state.cards = action.payload;
-        state.error = '';
+        state.cards = action.payload.cards;
+        state.pages = action.payload.pages;
+        state.next = action.payload.next;
+        state.prev = action.payload.prev;
+        state.error = action.payload.error;
       })
       .addCase(filterRequestAsync.rejected, (state, action) => {
         state.loading = false;

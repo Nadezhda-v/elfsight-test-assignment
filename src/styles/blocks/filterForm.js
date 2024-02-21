@@ -51,7 +51,11 @@ export const StyledInput = styled.input`
   padding: 10px 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 330px;
+  width: 340px;
+
+  @media ${props => props.theme.media.desktop} {
+    width: 325px;
+  }
 
   @media ${props => props.theme.media.phone} {
     width: 100%;
@@ -61,11 +65,16 @@ export const StyledInput = styled.input`
 
 export const StyledSelect = styled.select`
   ${StyledInput}
+
   background-color: #fff;
   width: 180px;
   border: 1px solid #ccc;
   padding: 10px 5px;
   max-height: 40px;
+
+  @media ${props => props.theme.media.desktop} {
+    width: 210px;
+  }
 
   @media ${props => props.theme.media.phone} {
     max-height: 35px;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SpanStyles = styled.span`
+const spanStyles = styled.span`
   padding-top: 10px;
 
   @media ${props => props.theme.media.tablet} {
@@ -8,15 +8,16 @@ const SpanStyles = styled.span`
   }
 
   @media ${props => props.theme.media.phone} {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    padding-top: 6px;
   }
 `;
 
-export const StyledSpanPrimary = styled(SpanStyles)`
+export const StyledSpanPrimary = styled(spanStyles)`
   color: ${props => props.color || props.theme.colors.primary};
 `;
 
-export const StyledSpanSecondary = styled(SpanStyles)`
+export const StyledSpanSecondary = styled(spanStyles)`
   color: ${props => props.color || props.theme.colors.secondary};
 `;
 

@@ -5,14 +5,20 @@ import { URL_API } from '../../api/constants';
 
 export const cardsRequestAsync = createAsyncThunk(
   'cards/axios',
-  () =>
-    axios.get(`${URL_API}/character`)
+  (href = null) => {
+    const url = href ? `${href}` : `${URL_API}/character`;
+
+    return axios.get(url)
       .then(({ data }) => {
         const cards = data.results;
+        const pages = data.info.pages;
+        const prev = data.info.prev;
+        const next = data.info.next;
 
-        return cards;
+        return { cards, pages, prev, next };
       })
-      .catch((error) => ({ error: error.message }))
+      .catch((error) => ({ error: error.message }));
+  }
 );
 
 export const filterRequestAsync = createAsyncThunk(
@@ -45,8 +51,11 @@ export const filterRequestAsync = createAsyncThunk(
     return axios.get(urlFilter)
       .then(({ data }) => {
         const cards = data.results;
+        const pages = data.info.pages;
+        const prev = data.info.prev;
+        const next = data.info.next;
 
-        return cards;
+        return { cards, pages, prev, next };
       })
       .catch((error) => ({ error: error.message }));
   }

@@ -12,10 +12,14 @@ export const StyledModal = styled.div`
   background-color: white;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 50px;
-  inset: 18%;
+  padding: 40px;
+  inset: 20%;
   border-radius: 16px;
   margin-bottom: 10px;
+
+  @media ${props => props.theme.media.desktop} {
+    padding: 20px;
+  }
 
   @media ${props => props.theme.media.tablet} {
     padding: 10px;

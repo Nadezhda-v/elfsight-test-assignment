@@ -1,16 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  StyledImage,
-  StyledImageWrapper
+  StyledImageRotate,
+  StyledImageWrapper,
 } from '../../styles/blocks/imageRotate';
 
 export const ImageRotate = ({ image, title }) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
-  const handleMouseMove = useCallback((event) => {
+  const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
 
     // Вычисляем углы поворота по осям X и Y
@@ -20,11 +20,11 @@ export const ImageRotate = ({ image, title }) => {
     const deltaY = (clientY - centerY) / centerY;
 
     // Максимальный угол поворота (в градусах)
-    const maxAngle = 40;
+    const maxAngle = 30;
 
     setRotateY(deltaX * maxAngle);
     setRotateX(deltaY * maxAngle * -1);
-  }, []);
+  };
 
   const handleMouseLeave = () => {
     setRotateX(0);
@@ -36,7 +36,7 @@ export const ImageRotate = ({ image, title }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <StyledImage
+      <StyledImageRotate
         src={image}
         alt={title}
         style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}

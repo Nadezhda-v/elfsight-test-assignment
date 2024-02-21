@@ -9,6 +9,8 @@ export const theme = {
     submitButton: '#e36912',
     resetButton: 'rgb(158, 158, 158)',
     preloader: 'rgb(158, 158, 158)',
+    subPanel: '#383744',
+    subPanelBg: '#c8c8c9',
   },
   media: {
     phone: '(max-width: 425px)',

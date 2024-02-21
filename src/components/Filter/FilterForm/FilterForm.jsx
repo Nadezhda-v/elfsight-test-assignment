@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { isEqual } from 'lodash';
 
@@ -19,7 +18,7 @@ import {
 } from '../../../styles/base/button';
 import { filterRequestAsync } from '../../../store/cards/cardsAction';
 
-export const FilterForm = ({ setShowFilters }) => {
+export const FilterForm = () => {
   const dispatch = useDispatch();
   const [previousData, setPreviousData] = useState(null);
   const [filters, setFilters] = useState({
@@ -46,7 +45,6 @@ export const FilterForm = ({ setShowFilters }) => {
       type: '',
       gender: ''
     });
-    // setShowFilters(false);
   };
 
   const handleSubmit = useCallback((e) => {
@@ -110,7 +108,11 @@ export const FilterForm = ({ setShowFilters }) => {
               <option value=''>Species</option>
               <option value='human'>Human</option>
               <option value='alien'>Alien</option>
+              <option value='animal'>Animal</option>
               <option value='humanoid'>Humanoid</option>
+              <option value='mythological creature'>
+                Mythological Creature
+              </option>
             </StyledSelect>
 
             <StyledSelect
@@ -138,8 +140,4 @@ export const FilterForm = ({ setShowFilters }) => {
       </StyledFilterForm>
     </>
   );
-};
-
-FilterForm.propTypes = {
-  setShowFilters: PropTypes.func,
 };

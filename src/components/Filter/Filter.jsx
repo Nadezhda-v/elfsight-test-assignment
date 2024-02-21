@@ -15,7 +15,7 @@ export const Filter = () => {
         </StyledFilterButton>
       </StyledButtonWrapper>
 
-      {showFilters && <FilterForm setShowFilters={setShowFilters} />}
+      {showFilters && <FilterForm />}
     </>
   );
 };
