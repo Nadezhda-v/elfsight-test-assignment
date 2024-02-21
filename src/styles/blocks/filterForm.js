@@ -27,6 +27,10 @@ export const StyledFormWrapper = styled.div`
 export const StyledSelectWrapper = styled.div`
   ${StyledWrapper}
 
+  @media ${props => props.theme.media.tablet} {
+    flex-direction: column;
+  }
+
   @media ${props => props.theme.media.phone} {
     flex-direction: column;
     gap: 14px;
@@ -74,6 +78,10 @@ export const StyledSelect = styled.select`
 
   @media ${props => props.theme.media.desktop} {
     width: 210px;
+  }
+
+  @media ${props => props.theme.media.tablet} {
+    width: 325px;
   }
 
   @media ${props => props.theme.media.phone} {
